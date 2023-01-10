@@ -1,9 +1,9 @@
 function drawChart() {
+    errorMessage("");
     var chartType = $('#chart_type').val();
-    console.log(chartType);
     switch (chartType) {
         case null:
-            alert("No chart type selected");
+            errorMessage("Please select a chart type");
             break;
         case "Histogram":
             drawHistogram();
@@ -18,33 +18,33 @@ function drawChart() {
             drawColumnChart();
             break;
         default:
-            alert("not a supported chart type");
+            errorMessage("Not a supported chart type");
             break;
     }
 }
 
 function listSelectionOptions() {
-    var inputOptionsDiv = document.getElementsByClassName('input-options')
-    var outputOptionsDiv = document.getElementsByClassName('output-options')
+    var inputOptionsDiv = document.getElementsByClassName('input-options');
+    var outputOptionsDiv = document.getElementsByClassName('output-options');
 
     inputOptionsDiv.innerHTML = '';
     outputOptionsDiv.innerHTML = '';
     var inputs = inputsNames()
     var outputs = outputsNames()
     for (i in inputs) {
-        inputOptionsDiv[0].appendChild(makeOption(inputs[i]))
+        inputOptionsDiv[0].appendChild(makeOption(inputs[i]));
     }
 
     for (i in inputOptionsDiv) {
-        inputOptionsDiv[i].innerHTML = inputOptionsDiv[0].innerHTML
+        inputOptionsDiv[i].innerHTML = inputOptionsDiv[0].innerHTML;
     }
 
     for (i in outputs) {
-        outputOptionsDiv[0].appendChild(makeOption(outputs[i]))
+        outputOptionsDiv[0].appendChild(makeOption(outputs[i]));
     }
 
     for (i in outputOptionsDiv) {
-        outputOptionsDiv[i].innerHTML = outputOptionsDiv[0].innerHTML
+        outputOptionsDiv[i].innerHTML = outputOptionsDiv[0].innerHTML;
     }
 
     var elems = document.querySelectorAll('select');
@@ -112,7 +112,7 @@ function inputsNames() {
 function drawHistogram() {
     var dataName = $('#all-data-val').val();
     if (dataName == null) {
-        alert("Please specify which data use");
+        errorMessage("Please specify which data use");
         return;
     }
 
@@ -141,7 +141,7 @@ function drawScatterPlot() {
     var yAxis = $('#y-axis-val').val();
 
     if (xAxis == null || yAxis == null) {
-        alert("Please specify which data to use on BOTH the x axis and y axis");
+        errorMessage("Please specify which data to use on BOTH the x axis and y axis");
         return;
     }
     var scatterData = [
@@ -170,7 +170,7 @@ function drawBarChart() {
     var yAxis = $('#y-axis-val').val();
 
     if (xAxis == null || yAxis == null) {
-        alert("Please specify which data to use on BOTH the x axis and y axis");
+        errorMessage("Please specify which data to use on BOTH the x axis and y axis");
         return;
     }
     var scatterData = [
@@ -200,7 +200,7 @@ function drawColumnChart() {
     var yAxis = $('#y-axis-val').val();
 
     if (xAxis == null || yAxis == null) {
-        alert("Please specify which data to use on BOTH the x axis and y axis");
+        errorMessage("Please specify which data to use on BOTH the x axis and y axis");
         return;
     }
     var scatterData = [
@@ -226,6 +226,11 @@ function drawColumnChart() {
     chart.draw(scatterData, options);
 }
 
+function errorMessage(message) {
+    var error = document.getElementById("error");
+    error.innerHTML = "<b class='red-text'>" + message + "</b>";
+}
+
 
 function displayChartOptions() {
     $(document).on('change', '#chart_type', function() {
@@ -233,6 +238,7 @@ function displayChartOptions() {
         $("#x-axis").hide();
         $("#y-axis").hide();
         $("#all-data").hide();
+        errorMessage("")
         switch (selection) {
             case "Histogram":
                 $("#all-data").show();
