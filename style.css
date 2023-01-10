@@ -1,0 +1,37 @@
+#nav-bar {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.red-text {
+    color: red;
+}
+
+label {
+    font-size: 14px;
+}
+
+.padding-left {
+    padding-left: 20px;
+}
+
+input[type=number]:not(.browser-default) {
+    font-size: 14px;
+    height: 2rem;
+}
+
+.input-field.inline input {
+    margin-bottom: 1px;
+}
+
+.sidenav li {
+    line-height: 7px;
+}
+
+.sidenav {
+    width: 350px;
+}
+
+.row {
+    margin-bottom: 0;
+}

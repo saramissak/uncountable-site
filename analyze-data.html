@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- imported CSS -->
+    <!-- Compiled and minified materalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- imported JS for ajax and google charts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Compiled and minified JavaScript for maertalize-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- My JS files -->
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/visualizer.js"></script>
+    <script type="text/javascript" src="js/charts.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        google.charts.load("current", {
+            packages: ["corechart"]
+        });
+    </script>
+</head>
+
+<body onload="displayChartOptions(); loadNav(); listSelectionOptions();">
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <h1>Analyze Data</h1>
+
+        <form>
+            <label>How would you like to view your data?<b class="red-text">*</b></label>
+            <div class="col s12 m6">
+                <select id="chart_type" name="chart_type">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Bar chart" data-icon="images/bar-chart.png">Bar chart</option>
+                    <option value="Column chart" data-icon="images/column-chart.png">Column chart</option>
+                    <option value="Histogram" data-icon="images/histogram.png">Histogram</option>
+                    <option value="Scatter plot" data-icon="images/scatter-plot.png">Scatter plot</option>
+                </select>
+            </div>
+
+            <div id="y-axis" style="display:none;">
+                <label for="y-axis-val">What would you like on the y-axis?<b class="red-text">*</b></label>
+                <select id="y-axis-val" name="y-axis-val">
+                    <option value="" disabled selected>Choose your option</option>
+                    <optgroup label="Inputs" class="input-options"></optgroup>
+                    <optgroup label="Outputs" class="output-options"></optgroup>
+                </select>
+            </div>
+
+            <div id="x-axis" style="display:none;">
+                <label for="x-axis-val">What would you like on the x-axis?<b class="red-text">*</b></label>
+                <select id="x-axis-val" name="x-axis-val">
+                    <option value="" disabled selected>Choose your option</option>
+                    <optgroup label="Inputs" class="input-options"></optgroup>
+                    <optgroup label="Outputs" class="output-options"></optgroup>
+                </select>
+            </div>
+
+            <div id="all-data" style="display:none;">
+                <label for="all-data-val">What data would you like to make a histogram of?</label>
+                <select id="all-data-val" name="all-data-val">
+                    <option value="" disabled selected>Choose your option</option>
+                    <optgroup label="Inputs" class="input-options"></optgroup>
+                    <optgroup label="Outputs" class="output-options"></optgroup>
+                </select>
+            </div>
+
+            <p>
+                Would you like to include the 0.0 values?
+                <label>
+                    <input name="0.0" type="radio" value="yes" />
+                    <span>Yes</span>
+                </label>
+
+                <label>
+                    <input name="0.0" type="radio" value="no" checked />
+                    <span>No</span>
+                </label>
+            </p>
+
+            <a id="displayChart" class="waves-effect waves-light btn-small" onclick="drawChart()">Show graph</a>
+        </form>
+
+        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    </div>
+</body>
+
+<script>
+</script>
+
+</html>
